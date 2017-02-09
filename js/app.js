@@ -63,16 +63,16 @@ Game.prototype._renderBoard = function() {
 Game.prototype.moveLeft = function() {
   var updatedBoard = [];
 
+  //1. if NOT Null push values to the newRow array
   this.board.forEach(function(row) {
     var newRow = [];
-
     row.forEach(function(cell) {
       //remove the empty items from the row
       if (cell !== null) {
         newRow.push(cell);
       }
-
     });
+    //2. Merge Cells
     for (var i = 0; i < newRow.length; i++) {
       //Determine if move left needs to merge
       if (newRow[i] === newRow[i + 1]) {
@@ -91,6 +91,7 @@ Game.prototype.moveLeft = function() {
     while (moved.length < 4) {
       moved.push(null);
     }
+    
     updatedBoard.push(moved);
   });
   this.board = updatedBoard;
