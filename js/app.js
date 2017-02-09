@@ -12,7 +12,6 @@ function Game(name) {
   ];
   this._generateTile();
   this._getAvailablePosition();
-  this.moveLeft();
   console.log(this.board);
   // this._generateTile();
 
@@ -55,50 +54,62 @@ Game.prototype._getAvailablePosition = function() {
 
 };
 
+Game.prototype._transposeMatrix = function () {
+  for (var row = 0; row < this.board.length; row++) {
+    for (var column = row+1; column < this.board.length; column++) {
+      var temp = this.board[row][column];
+      this.board[row][column] = this.board[column][row];
+      this.board[column][row] = temp;
+    }
+  }
+};
+
+Game.prototype.move = function(direction) {
+  if (this.hasWon || this.hasLost) {
+    return;
+  }
+  switch (direction) {
+    case 'up':
+      this.moveUp();
+      break;
+    case 'down':
+      this.moveDown();
+      break;
+    case 'left':
+      this.moveLeft();
+      break;
+    case 'right':
+      this.moveRight();
+      break;
+  }
+  if (this.boardHasChanged) {
+    this._generateTile();
+    this.boardHasChanged = false;
+  }
+};
+
+
 Game.prototype._renderBoard = function() {
   this.board.forEach(function(row) {
     console.log(row);
+    return(row);
   });
 };
-Game.prototype.moveLeft = function() {
-  var updatedBoard = [];
 
-  //1. if NOT Null push values to the newRow array
-  this.board.forEach(function(row) {
-    var newRow = [];
-    row.forEach(function(cell) {
-      //remove the empty items from the row
-      if (cell !== null) {
-        newRow.push(cell);
-      }
-    });
-    //2. Merge Cells
-    for (var i = 0; i < newRow.length; i++) {
-      //Determine if move left needs to merge
-      if (newRow[i] === newRow[i + 1]) {
-        newRow[i] *= 2;
-        newRow[i + 1] = null;
-      }
-    }
-    //3. remove new emptys
-    var moved = [];
-    newRow.forEach(function(cell) {
-      if (cell !== null) {
-        moved.push(cell);
-      }
-    });
-    //4. push() pulls until row has length of 4 again
-    while (moved.length < 4) {
-      moved.push(null);
-    }
-    
-    updatedBoard.push(moved);
-  });
-  this.board = updatedBoard;
+Game.prototype._updateScore = function(points) {
+  this.score += points;
+  if (this.score === 2048) {
+    this.hasWon = true;
+  }
+  $(".score").html("Score: " + this.score);
+
 };
+
 Game.prototype.showTiles = function() {
   console.log(this.board);
 };
+
+
 
 var newGame = new Game("SPR");
 // var newGame = new Game("SPR");
@@ -106,6 +117,7 @@ $(".startGame").click(function() {
   newGame._generateTile();
 });
 $(".showTiles").click(function() {
-  newGame.moveLeft();
+  var yoyo = newGame._renderBoard();
+  $(".renderBoard").html("Score: " + this.score);
 });
 // newGame._generateTile();

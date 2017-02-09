@@ -1,4 +1,4 @@
-Game.prototype.moveRight = function() {
+Game.prototype.moveLeft = function() {
   var updatedBoard = [];
   var theGame = this;
 
@@ -12,11 +12,11 @@ Game.prototype.moveRight = function() {
       }
     });
     //2. Merge Cells
-    for (var i = (newRow.length -1); i >= 0; i--) {
+    for (var i = 0; i < newRow.length; i++) {
       //Determine if move left needs to merge
-      if (newRow[i] === newRow[i - 1]) {
+      if (newRow[i] === newRow[i + 1]) {
         newRow[i] *= 2;
-        newRow[i - 1] = null;
+        newRow[i + 1] = null;
         theGame._updateScore(newRow[i]);
       }
     }
@@ -26,11 +26,10 @@ Game.prototype.moveRight = function() {
       if (cell !== null) {
         moved.push(cell);
       }
-
     });
     //4. push() pulls until row has length of 4 again
     while (moved.length < 4) {
-      moved.unshift(null);
+      moved.push(null);
     }
     if (newRow.length !== row.length) {
       theGame.boardHasChanged = true;
@@ -38,7 +37,4 @@ Game.prototype.moveRight = function() {
     updatedBoard.push(moved);
   });
   this.board = updatedBoard;
-};
-Game.prototype.showTiles = function() {
-  console.log(this.board);
 };
