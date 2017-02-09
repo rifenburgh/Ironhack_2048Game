@@ -1,8 +1,10 @@
 body {
 
 }
-.btnStart {
-  text-align: center;
+.topRow {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.btnStart {
+  text-align: center;
 }

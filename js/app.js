@@ -11,23 +11,21 @@ function Game(name) {
     [ null, null, null, null ]
   ];
   this._generateTile();
-  this._generateTile();
-  this._renderBoard();
+  this._getAvailablePosition();
+  this.moveLeft();
+  console.log(this.board);
+  // this._generateTile();
 
 }
 
-Game.prototype.lookup = function() {
-  console.log(this.board[2][2]);
-};
-
 Game.prototype._generateTile = function() {
   var tileValue;
-  this.x = Math.floor(Math.random() * 4);
-  this.y = Math.floor(Math.random() * 4);
+  // this.x = Math.floor(Math.random() * 4);
+  // this.y = Math.floor(Math.random() * 4);
   if (Math.random() < 0.8) {
-    this.value = 2;
+    tileValue = 2;
   } else {
-    this.value = 4;
+    tileValue = 4;
   }
   // this.value = 4 / (Math.floor(Math.random() * 2) + 1);
 
@@ -36,12 +34,9 @@ Game.prototype._generateTile = function() {
     var row = emptyTile.x;
     var col = emptyTile.y;
     this.board[row][col] = tileValue;
-    console.log(row, col);
   }
-
-  // console.log(this.x + ", " + this.y + ", " + this.value);
-  // this._getAvailablePosition();
 };
+
 Game.prototype._getAvailablePosition = function() {
   var emptyTiles = [];
   this.board.forEach(function(row, rowIndex) {
@@ -56,8 +51,6 @@ Game.prototype._getAvailablePosition = function() {
     return null;
   }
   var randomIndex = Math.floor(Math.random() * emptyTiles.length);
-  console.log("random" + randomIndex);
-  console.log("random x:" + emptyTiles[randomIndex].x + " random y:" + emptyTiles[randomIndex].y);
   return emptyTiles[randomIndex];
 
 };
@@ -67,6 +60,51 @@ Game.prototype._renderBoard = function() {
     console.log(row);
   });
 };
+Game.prototype.moveLeft = function() {
+  var updatedBoard = [];
+
+  this.board.forEach(function(row) {
+    var newRow = [];
+
+    row.forEach(function(cell) {
+      //remove the empty items from the row
+      if (cell !== null) {
+        newRow.push(cell);
+      }
+
+    });
+    for (var i = 0; i < newRow.length; i++) {
+      //Determine if move left needs to merge
+      if (newRow[i] === newRow[i + 1]) {
+        newRow[i] *= 2;
+        newRow[i + 1] = null;
+      }
+    }
+    //3. remove new emptys
+    var moved = [];
+    newRow.forEach(function(cell) {
+      if (cell !== null) {
+        moved.push(cell);
+      }
+    });
+    //4. push() pulls until row has length of 4 again
+    while (moved.length < 4) {
+      moved.push(null);
+    }
+    updatedBoard.push(moved);
+  });
+  this.board = updatedBoard;
+};
+Game.prototype.showTiles = function() {
+  console.log(this.board);
+};
 
 var newGame = new Game("SPR");
+// var newGame = new Game("SPR");
+$(".startGame").click(function() {
+  newGame._generateTile();
+});
+$(".showTiles").click(function() {
+  newGame.moveLeft();
+});
 // newGame._generateTile();
