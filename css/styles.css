@@ -1,5 +1,4 @@
 body {
-
 }
 .topRow {
   margin-top: 10px;
@@ -14,3 +13,60 @@ body {
 .btnStart {
   text-align: center;
 }
+
+.theBoard {
+  text-align: center;
+}
+
+#game-board {
+  background: #3582b8;
+  border-radius: 4px;
+  padding: 5px;
+  padding-left: 38px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+/*.row {
+  height: 100%;
+  width: 100%;
+}*/
+
+.cell {
+  background: rgba(225, 226, 241, 0.5);
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 130px;
+  float: left;
+  margin: 10px;
+  width: 130px;
+  color: white;
+}
+
+/*.tile {
+  background: rgba(225, 226, 241, 0.35);
+  box-sizing: border-box;
+  color: #fff;
+  float: none;
+  font-size: 55px;
+  font-weight: bold;
+  padding-top: 30px;
+  position: absolute;
+  text-align: center;
+  text-shadow: 1px 1px 3px #000;
+}*/
+
+
+.tile.val-2    { background: #93d2ff; font-size: 50px; padding-top: 35px; }
+.tile.val-4    { background: #4ab5ff; font-size: 50px; padding-top: 35px; }
+.tile.val-8    { background: #289cef; font-size: 50px; padding-top: 35px; }
+.tile.val-16   { background: #2a72a3; font-size: 50px; padding-top: 35px; }
+.tile.val-32   { background: #105a86; font-size: 50px; padding-top: 35px; }
+.tile.val-64   { background: #00548c; font-size: 50px; padding-top: 35px; }
+.tile.val-128  { background: #004777; font-size: 50px; padding-top: 35px; }
+.tile.val-256  { background: #002c4a; font-size: 50px; padding-top: 35px; }
+.tile.val-512  { background: #000F35; font-size: 50px; padding-top: 35px; }
+.tile.val-1024 { background: #000921; font-size: 50px; padding-top: 35px; }
+.tile.val-2048 { background: #009894; font-size: 50px; padding-top: 35px; }

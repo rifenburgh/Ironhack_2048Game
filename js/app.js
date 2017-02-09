@@ -84,6 +84,7 @@ Game.prototype.move = function(direction) {
   }
   if (this.boardHasChanged) {
     this._generateTile();
+    this._isGameLost();
     this.boardHasChanged = false;
   }
 };
@@ -104,7 +105,7 @@ Game.prototype._updateScore = function(points) {
   $(".score").html("Score: " + this.score);
 };
 
-Game.prototype.isGameLost = function() {
+Game.prototype._isGameLost = function() {
   if (this._getAvailablePosition() !== null) {
     return;
   }

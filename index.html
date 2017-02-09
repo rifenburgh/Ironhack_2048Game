@@ -18,23 +18,53 @@
 
     <div class="row topRow">
       <div class="col-md-4 theScore">
-        <button class="btn btn-warning score"> </button>
+        <button class="btn btn-warning score">Score: 0</button>
       </div>
       <div class="col-md-4 btnStart">
         <button class="btn btn-normal startGame">Start</button>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-primary showTiles">Show Tiles</button>
+        <button class="btn btn-primary showTiles">Do Nothing</button>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-4">
+    <div class="row theBoard">
+      <div class="col-md-3">
       </div>
-      <div class="col-md-8">
-        <p class="renderBoard"></p>
+      <div class="col-md-6">
+        <div id="game-board">
+          <div class="row">
+            <div class="cell tile tile-position-0-0 val-2048">2048</div>
+            <div class="cell tile tile-position-0-1 val-128">128</div>
+            <div class="cell tile tile-position-0-2 val-256">256</div>
+            <div class="cell tile tile-position-0-3"></div>
+          </div>
+
+          <div class="row">
+            <div class="cell tile tile-position-1-0"></div>
+            <div class="cell tile tile-position-1-1"></div>
+            <div class="cell tile tile-position-1-2"></div>
+            <div class="cell tile tile-position-1-3"></div>
+          </div>
+
+          <div class="row">
+            <div class="cell tile tile-position-2-0"></div>
+            <div class="cell tile tile-position-2-1"></div>
+            <div class="cell tile tile-position-2-2"></div>
+            <div class="cell tile tile-position-2-3"></div>
+          </div>
+
+          <div class="row">
+            <div class="cell tile tile-position-3-0"></div>
+            <div class="cell tile tile-position-3-1"></div>
+            <div class="cell tile tile-position-3-2"></div>
+            <div class="cell tile tile-position-3-3"></div>
+          </div>
+
+          <!-- <div class="clearfix"></div>
+          </div> -->
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
       </div>
     </div>
 
