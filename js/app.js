@@ -102,7 +102,37 @@ Game.prototype._updateScore = function(points) {
     this.hasWon = true;
   }
   $(".score").html("Score: " + this.score);
+};
 
+Game.prototype.isGameLost = function() {
+  if (this._getAvailablePosition() !== null) {
+    return;
+  }
+  var theGame = this;
+  this.board.forEach(function(row, rowIndex) {
+    row.forEach(function(cell, cellIndex) {
+
+      var current = theGame.board[rowIndex][cellIndex];
+            var top, bottom, left, right;
+
+            if (theGame.board[rowIndex][cellIndex - 1]) {
+              left  = theGame.board[rowIndex][cellIndex - 1];
+            }
+            if (theGame.board[rowIndex][cellIndex + 1]) {
+              right = theGame.board[rowIndex][cellIndex + 1];
+            }
+            if (theGame.board[rowIndex - 1]) {
+              top    = theGame.board[rowIndex - 1][cellIndex];
+            }
+            if (theGame.board[rowIndex + 1]) {
+              bottom = theGame.board[rowIndex + 1][cellIndex];
+            }
+            if (current === top || current === bottom || current === left || current === right)
+               theGame.hasLost = false;
+
+
+    });
+  });
 };
 
 Game.prototype.showTiles = function() {
