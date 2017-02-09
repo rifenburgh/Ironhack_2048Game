@@ -101,6 +101,7 @@ Game.prototype._updateScore = function(points) {
   this.score += points;
   if (this.score === 2048) {
     this.hasWon = true;
+
   }
   $(".score").html("Score: " + this.score);
 };
@@ -145,10 +146,8 @@ Game.prototype.showTiles = function() {
 var newGame = new Game("SPR");
 // var newGame = new Game("SPR");
 $(".startGame").click(function() {
-  newGame._generateTile();
+
 });
 $(".showTiles").click(function() {
-  var yoyo = newGame._renderBoard();
-  $(".renderBoard").html("Score: " + this.score);
+
 });
-// newGame._generateTile();

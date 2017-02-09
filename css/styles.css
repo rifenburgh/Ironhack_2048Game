@@ -42,7 +42,8 @@ body {
   float: left;
   margin: 10px;
   width: 130px;
-  color: white;
+  /*color: white;*/
+  color: black;
 }
 
 /*.tile {
